@@ -1,69 +1,26 @@
+//This is an example code for Navigator//
 import React, {Component} from 'react';
-import {StyleSheet} from 'react-native';
-import {
-  Container,
-  Header,
-  Title,
-  Content,
-  Button,
-  Icon,
-  Left,
-  Right,
-  Body,
-  Text,
-} from 'native-base';
+//import react in our code.
 
-class Block extends Component {
-  render() {
-    return (
-      <Container style={styles.container}>
-        <Header>
-          <Left>
-            <Button transparent onPress={() => this.props.navigation.goBack()}>
-              <Icon name="arrow-back" />
-            </Button>
-          </Left>
-          <Body>
-            <Title>Block</Title>
-          </Body>
-          <Right />
-        </Header>
-
-        <Content padder style={{backgroundColor: '#FFF', padding: 20}}>
-          <Button block light style={styles.mb15}>
-            <Text>Light</Text>
-          </Button>
-          <Button block info style={styles.mb15}>
-            <Text>Info</Text>
-          </Button>
-          <Button block primary style={styles.mb15}>
-            <Text>Primary</Text>
-          </Button>
-          <Button block success style={styles.mb15}>
-            <Text>Success</Text>
-          </Button>
-          <Button block warning style={styles.mb15}>
-            <Text>Warning</Text>
-          </Button>
-          <Button block danger style={styles.mb15}>
-            <Text>Danger</Text>
-          </Button>
-          <Button block dark style={styles.mb15}>
-            <Text>Dark</Text>
-          </Button>
-        </Content>
-      </Container>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#FFF',
+//For react-navigation 3.0+
+//import { createAppContainer, createStackNavigator } from 'react-navigation';
+//For react-navigation 4.0+
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+import Home from './src/views/login/Home';
+import SignUp from './src/views/login/Signup';
+import SignIn from './src/views/login/Signin';
+//import all the screens we are going to switch
+const App = createStackNavigator(
+  {
+    //Constant which holds all the screens like index of any book
+    SignUp: {screen: SignUp},
+    //First entry by default be our first screen if we do not define initialRouteName
+    SignIn: {screen: SignIn},
+    Home: {screen: Home},
   },
-  mb15: {
-    marginBottom: 20,
+  {
+    initialRouteName: 'Home',
   },
-});
-
-export default Block;
+);
+export default createAppContainer(App);

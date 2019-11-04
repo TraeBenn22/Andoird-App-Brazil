@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'homerepair' do
-  # Pods for homerepair
+target 'repairTest' do
+  # Pods for repairTest
   pod 'FBLazyVector', :path => "../node_modules/react-native/Libraries/FBLazyVector"
   pod 'FBReactNativeSpec', :path => "../node_modules/react-native/Libraries/FBReactNativeSpec"
   pod 'RCTRequired', :path => "../node_modules/react-native/Libraries/RCTRequired"
@@ -34,7 +34,7 @@ target 'homerepair' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  target 'homerepairTests' do
+  target 'repairTestTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -42,10 +42,10 @@ target 'homerepair' do
   use_native_modules!
 end
 
-target 'homerepair-tvOS' do
-  # Pods for homerepair-tvOS
+target 'repairTest-tvOS' do
+  # Pods for repairTest-tvOS
 
-  target 'homerepair-tvOSTests' do
+  target 'repairTest-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

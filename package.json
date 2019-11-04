@@ -1,5 +1,5 @@
 {
-  "name": "homerepair",
+  "name": "repairTest",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,9 +10,14 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "native-base": "^2.13.8",
     "react": "16.9.0",
-    "react-native": "0.61.2",
-    "native-base": "latest"
+    "react-native": "0.61.3",
+    "react-native-gesture-handler": "^1.5.0",
+    "react-navigation": "^4.0.10",
+    "react-navigation-stack": "^1.10.3",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
@@ -21,8 +26,8 @@
     "babel-jest": "^24.9.0",
     "eslint": "^6.6.0",
     "jest": "^24.9.0",
-    "metro-react-native-babel-preset": "^0.56.3",
-    "react-navigation": "^4.0.10",
+    "metro-react-native-babel-preset": "^0.57.0",
+    "react-redux": "^7.1.1",
     "react-test-renderer": "16.9.0"
   },
   "jest": {
