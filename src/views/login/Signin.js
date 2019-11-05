@@ -1,30 +1,84 @@
-//This is an example code for Navigator//
-import React, {Component} from 'react';
-//import react in our code.
-import {StyleSheet, View, Text} from 'react-native';
-import classPrivateFieldDestructureSet from '@babel/runtime/helpers/esm/classPrivateFieldDestructureSet';
-//import all the components we are going to use.
+import React from 'react';
+import {View, Text, TextInput, Button} from 'react-native';
+import {StackActions, NavigationActions} from 'react-navigation';
+import firebase from '../../FB/firebase';
 
-export default class SecondPage extends Component {
+export default class SecondPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      password: '',
+    };
+  }
   static navigationOptions = {
     title: 'Second Page',
     //Sets Header text of Status Bar
   };
+  handleOnLoginPress = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => {
+        firebase.auth().onAuthStateChanged(user => {
+          this.props.navigation.navigate(user ? 'MyEvent' : 'SignUpView');
+        });
+      });
+  };
+
+  handleOnCreateAccountPress = () => {
+    this.props.navigation.navigate('SignUpView');
+  };
+
+  handleOnForgotPasswordPress = () => {
+    let navActions = StackActions.reset({
+      index: 0,
+      action: [NavigationActions.navigate({routeName: 'ForgotPassword'})],
+    });
+
+    this.props.navigation.dispatch(navActions);
+  };
+
   render() {
     const {navigate} = this.props.navigation;
     return (
-      <View style={styles.container}>
-        <Text>Create and account below</Text>
+      <View style={{paddingTop: 50, alignItems: 'center'}}>
+        <Text>Log In</Text>
+        <TextInput
+          value={this.state.email}
+          onChangeText={text => {
+            this.setState({email: text});
+          }}
+          placeholder="E-Mail"
+          keyboardType="email-address" // recognizes if email is not properly formatted
+          autoCapitalize="none" // will capitalize every first letter if not turned off
+          autoCorrect={false}
+        />
+
+        <Text>Password</Text>
+
+        <TextInput
+          value={this.state.password}
+          onChangeText={text => {
+            this.setState({password: text});
+          }}
+          placeholder="Enter Password"
+          secureTextEntry // creates fuzz or stars to obscure pass entry
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        <Button title="Log In" onPress={this.handleOnLoginPress} />
+
+        <Button
+          title="Create New Account"
+          onPress={this.handleOnCreateAccountPress}
+        />
+
+        <Button
+          title="Forgot Password?"
+          onPress={this.handleOnForgotPasswordPress}
+        />
       </View>
     );
   }
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    margin: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

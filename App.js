@@ -7,7 +7,7 @@ import React, {Component} from 'react';
 //For react-navigation 4.0+
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import Home from './src/views/login/Home';
+import Home from './src/views/login/start';
 import SignUp from './src/views/login/Signup';
 import SignIn from './src/views/login/Signin';
 //import all the screens we are going to switch
