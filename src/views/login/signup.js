@@ -1,36 +1,18 @@
-import React, {Component} from 'react';
+import React from 'react';
 import firebase from '../../FB/firebase';
 import {View, Button, TextInput, Alert, Text} from 'react-native';
 
-export default class FirstPage extends Component {
+export default class SignUpView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: '',
-      username: '',
       password: '',
       passwordConfirm: '',
-      name: '',
       email: '',
-      street: '',
-      city: '',
-      state: '',
-      zip: '',
     };
   }
-  static navigationOptions = {
-    title: 'Sign Up',
-    //Sets Header text of Status Bar
-    headerStyle: {
-      backgroundColor: '#f4511e',
-      //Sets Header color
-    },
-    headerTintColor: '#fff',
-    //Sets Header text color
-    headerTitleStyle: {
-      fontWeight: 'bold',
-      //Sets Header text style
-    },
+  onBackToLoginPress = () => {
+    this.props.navigation.navigate('SignIn');
   };
 
   onSignUpPress = () => {
@@ -40,18 +22,11 @@ export default class FirstPage extends Component {
 
     firebase
       .auth()
-      .createUserWithEmailAndPassword(
-        this.state.email,
-        this.state.password,
-        this.state.name,
-        this.state.street,
-        this.state.city,
-        this.state.state,
-        this.state.zip,
-      )
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(
         () => {
-          this.props.navigation.navigate('home');
+          Alert.alert('Thanks for signing up!');
+          this.props.navigation.navigate('SignIn');
         },
         error => {
           Alert.alert(error.message);
@@ -66,15 +41,17 @@ export default class FirstPage extends Component {
     }));
   };
   render() {
-    const {navigate} = this.props.navigation;
     return (
       <View style={{paddingTop: 50, alignItems: 'center'}}>
         <Text>Sign Up Here!</Text>
-        <Text>Username</Text>
+        <Text>Email Address</Text>
         <TextInput
-          placeholder="Username"
-          value={this.state.username}
-          onChangeText={text => this.handleChange('username', text)}
+          placeholder="E-Mail"
+          value={this.state.email}
+          keyboardType="email-address"
+          autoCapitalize="none" // will capitalize every first letter if not turned off
+          autoCorrect={false}
+          onChangeText={text => this.handleChange('email', text)}
         />
         <Text>Password</Text>
         <TextInput
@@ -82,45 +59,22 @@ export default class FirstPage extends Component {
           value={this.state.password}
           onChangeText={text => this.handleChange('password', text)}
         />
-        <Text>First and Last Name</Text>
+        <Text>Confirm Password</Text>
         <TextInput
-          placeholder="Full Name"
-          value={this.state.name}
-          onChangeText={text => this.handleChange('name', text)}
-        />
-        <Text>Email Address</Text>
-        <TextInput
-          placeholder="Email"
-          value={this.state.email}
-          keyboardType="email-address"
-          autoCapitalize="none" // will capitalize every first letter if not turned off
+          value={this.state.passwordConfirm}
+          onChangeText={text => {
+            this.setState({passwordConfirm: text});
+          }}
+          placeholder="Confirm Password"
+          secureTextEntry // creates fuzz or stars to obscure pass entry
+          autoCapitalize="none"
           autoCorrect={false}
-          onChangeText={text => this.handleChange('email', text)}
         />
-        <Text>Your Address information</Text>
-        <TextInput
-          placeholder="Street Address"
-          value={this.state.street}
-          onChangeText={text => this.handleChange('street', text)}
-        />
-        <TextInput
-          placeholder="City"
-          value={this.state.city}
-          onChangeText={text => this.handleChange('city', text)}
-        />
-        <TextInput
-          placeholder="State"
-          value={this.state.state}
-          onChangeText={text => this.handleChange('state', text)}
-        />
-        <TextInput
-          placeholder="Zip Code"
-          value={this.state.zipCode}
-          onChangeText={text => this.handleChange('zipCode', text)}
-        />
+
         <Button title="Sign Up" onPress={this.onSignUpPress}>
           Everything looks good!
         </Button>
+        <Button title="Go Back to Log In" onPress={this.onBackToLoginPress} />
       </View>
     );
   }

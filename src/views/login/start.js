@@ -1,11 +1,13 @@
-//This is an example code for Navigator//
-import React, {Component} from 'react';
-//import react in our code.
+import React from 'react';
 import {StyleSheet, View, Button, Text} from 'react-native';
-//import all the components we are going to use.
+import {createDrawerNavigator, createAppContainer} from 'react-navigation';
+import LoginView from '../login/Signin';
+import SignUpView from '../login/Signup';
+import HomeView from '../homePage/home';
+import StartView from '../login/start';
+import SideBar from '../SideBar/SideBar.component';
 
-
-export default class HomePage extends Component {
+export default class StartPage extends React.Component {
   static navigationOptions = {
     title: 'Welcome to Home Repair!',
     //Sets Header text of Status Bar
@@ -41,3 +43,31 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+
+
+const AppNavigator = createDrawerNavigator(
+    {
+      LoginView: {screen: LoginView},
+      SignUpView: {screen: SignUpView},
+      StartView: {screen: StartView},
+      HomeView: {screen: HomeView},
+    },
+    {
+      initialRouteName: 'StartView',
+      drawerWidth: 300,
+      contentOptions: {},
+      contentComponent: props => <SideBar {...props} />,
+    },
+);
+
+const defaultStateForAppNav = AppNavigator.router.getStateForAction;
+
+AppNavigator.router.getStateForAction = (action, state) => {
+  if (state && action.type === 'Navigation/BACK') {
+    console.log('SWIPE!');
+  }
+  return defaultStateForAppNav(action, state);
+};
+
+export const AppContainer = createAppContainer(AppNavigator);

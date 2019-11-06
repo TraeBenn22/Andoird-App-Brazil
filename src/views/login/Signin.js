@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, Text, TextInput, Button} from 'react-native';
+import {View, Text, TextInput, Button, Alert} from 'react-native';
 import {StackActions, NavigationActions} from 'react-navigation';
 import firebase from '../../FB/firebase';
 
-export default class SecondPage extends React.Component {
+export default class SignInView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,23 +11,19 @@ export default class SecondPage extends React.Component {
       password: '',
     };
   }
-  static navigationOptions = {
-    title: 'Second Page',
-    //Sets Header text of Status Bar
-  };
   handleOnLoginPress = () => {
     firebase
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         firebase.auth().onAuthStateChanged(user => {
-          this.props.navigation.navigate(user ? 'MyEvent' : 'SignUpView');
+          this.props.navigation.navigate('Home');
         });
       });
   };
 
   handleOnCreateAccountPress = () => {
-    this.props.navigation.navigate('SignUpView');
+    this.props.navigation.navigate('SignUp');
   };
 
   handleOnForgotPasswordPress = () => {
@@ -40,7 +36,6 @@ export default class SecondPage extends React.Component {
   };
 
   render() {
-    const {navigate} = this.props.navigation;
     return (
       <View style={{paddingTop: 50, alignItems: 'center'}}>
         <Text>Log In</Text>
