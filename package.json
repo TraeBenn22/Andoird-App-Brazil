@@ -10,17 +10,27 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@expo/vector-icons": "^10.0.0",
+    "expo": "^35.0.0",
+    "expo-barcode-scanner": "~7.0.0",
+    "expo-camera": "~7.0.0",
+    "expo-constants": "^7.0.0",
+    "expo-font": "latest",
+    "expo-image-picker": "^7.0.0",
+    "expo-media-library": "~7.0.0",
+    "expo-permissions": "~7.0.0",
     "firebase": "^7.2.3",
     "native-base": "^2.13.8",
     "react": "16.9.0",
     "react-native": "0.61.3",
     "react-native-gesture-handler": "^1.5.0",
+    "react-native-reanimated": "^1.4.0",
     "react-navigation": "^4.0.10",
+    "react-navigation-drawer": "^2.3.3",
     "react-navigation-stack": "^1.10.3",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0"
   },
-
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/runtime": "^7.6.3",
@@ -29,6 +39,7 @@
     "eslint": "^6.6.0",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.57.0",
+    "react-native-firebase": "^5.5.6",
     "react-redux": "^7.1.1",
     "react-test-renderer": "16.9.0"
   },
@@ -36,6 +47,8 @@
     "preset": "react-native"
   },
   "rnpm": {
-  "assets": ["./fonts"]
-}
+    "assets": [
+      "./fonts"
+    ]
+  }
 }

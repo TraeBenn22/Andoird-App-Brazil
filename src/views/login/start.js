@@ -1,11 +1,5 @@
 import React from 'react';
 import {StyleSheet, View, Button, Text} from 'react-native';
-import {createDrawerNavigator, createAppContainer} from 'react-navigation';
-import LoginView from '../login/Signin';
-import SignUpView from '../login/Signup';
-import HomeView from '../homePage/home';
-import StartView from '../login/start';
-import SideBar from '../SideBar/SideBar.component';
 
 export default class StartPage extends React.Component {
   static navigationOptions = {
@@ -28,9 +22,8 @@ export default class StartPage extends React.Component {
     const {navigate} = this.props.navigation;
     return (
       <View style={styles.container} fontFamily="McLaren, cursive">
-        <Button title="Sign in" onPress={() => navigate('SignIn')} />
-        <Text>Need to create an account?</Text>
-        <Button title="Sign up" onPress={() => navigate('SignUp')} />
+        <Button title="Sign in" onPress={() => navigate('SignInView')} />
+        <Button title="Sign up" onPress={() => navigate('SignUpView')} />
       </View>
     );
   }
@@ -43,31 +36,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
-
-
-const AppNavigator = createDrawerNavigator(
-    {
-      LoginView: {screen: LoginView},
-      SignUpView: {screen: SignUpView},
-      StartView: {screen: StartView},
-      HomeView: {screen: HomeView},
-    },
-    {
-      initialRouteName: 'StartView',
-      drawerWidth: 300,
-      contentOptions: {},
-      contentComponent: props => <SideBar {...props} />,
-    },
-);
-
-const defaultStateForAppNav = AppNavigator.router.getStateForAction;
-
-AppNavigator.router.getStateForAction = (action, state) => {
-  if (state && action.type === 'Navigation/BACK') {
-    console.log('SWIPE!');
-  }
-  return defaultStateForAppNav(action, state);
-};
-
-export const AppContainer = createAppContainer(AppNavigator);

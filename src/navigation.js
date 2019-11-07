@@ -1,16 +1,19 @@
 import React from 'react';
-import {createDrawerNavigator, createAppContainer} from 'react-navigation';
-import LoginView from './views/login/Signin';
+import {createAppContainer} from 'react-navigation';
+import {createDrawerNavigator} from 'react-navigation-drawer';
+import SignInView from './views/login/Signin';
 import SignUpView from './views/login/Signup';
 import HomeView from './views/homePage/home';
 import StartView from './views/login/start';
-import SideBar from './views/SideBar/SideBar.component';
+import SideBar from './views/sideBar/SideBar.component';
+import ProfileView from './views/profile/profile';
 const AppNavigator = createDrawerNavigator(
   {
-    LoginView: {screen: LoginView},
+    SignInView: {screen: SignInView},
     SignUpView: {screen: SignUpView},
     StartView: {screen: StartView},
     HomeView: {screen: HomeView},
+    ProfileView: {screen: ProfileView},
   },
   {
     initialRouteName: 'StartView',

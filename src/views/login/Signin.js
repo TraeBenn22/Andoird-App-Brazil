@@ -17,13 +17,20 @@ export default class SignInView extends React.Component {
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         firebase.auth().onAuthStateChanged(user => {
-          this.props.navigation.navigate('Home');
+          this.props.navigation.navigate('HomeView');
         });
+      })
+      .catch(function(error) {
+        console.error(error);
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        console.log(errorCode);
+        console.log(errorMessage);
       });
   };
 
   handleOnCreateAccountPress = () => {
-    this.props.navigation.navigate('SignUp');
+    this.props.navigation.navigate('SignUpView');
   };
 
   handleOnForgotPasswordPress = () => {

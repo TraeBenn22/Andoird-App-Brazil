@@ -1,7 +1,7 @@
 import React from 'react';
 import firebase from '../../FB/firebase';
 import {View, Button, TextInput, Alert, Text} from 'react-native';
-
+import {addUser} from '../../FB/firebase-CRUD';
 export default class SignUpView extends React.Component {
   constructor(props) {
     super(props);
@@ -12,7 +12,7 @@ export default class SignUpView extends React.Component {
     };
   }
   onBackToLoginPress = () => {
-    this.props.navigation.navigate('SignIn');
+    this.props.navigation.navigate('SignInView');
   };
 
   onSignUpPress = () => {
@@ -25,8 +25,11 @@ export default class SignUpView extends React.Component {
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(
         () => {
-          Alert.alert('Thanks for signing up!');
-          this.props.navigation.navigate('SignIn');
+          addUser({
+            email: this.state.email,
+          });
+          Alert.alert('Thanks for signing up, You can log in now!');
+          this.props.navigation.navigate('SignInView');
         },
         error => {
           Alert.alert(error.message);
