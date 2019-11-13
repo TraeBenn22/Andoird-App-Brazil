@@ -25,10 +25,7 @@ export default class SignUpView extends React.Component {
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(
         () => {
-          addUser({
-            email: this.state.email,
-          });
-          Alert.alert('Thanks for signing up, You can log in now!');
+          Alert.alert('Thanks for signing up, You can now log in!');
           this.props.navigation.navigate('SignInView');
         },
         error => {
@@ -46,7 +43,6 @@ export default class SignUpView extends React.Component {
   render() {
     return (
       <View style={{paddingTop: 50, alignItems: 'center'}}>
-        <Text>Sign Up Here!</Text>
         <Text>Email Address</Text>
         <TextInput
           placeholder="E-Mail"
@@ -75,7 +71,6 @@ export default class SignUpView extends React.Component {
         />
 
         <Button title="Sign Up" onPress={this.onSignUpPress}>
-          Everything looks good!
         </Button>
         <Button title="Go Back to Log In" onPress={this.onBackToLoginPress} />
       </View>

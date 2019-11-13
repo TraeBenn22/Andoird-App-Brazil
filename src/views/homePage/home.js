@@ -44,9 +44,9 @@ export default class HomePage extends React.Component {
             <View style={{margin: 10}}>
               <Text
                 onPress={() => {
-                  this.props.navigation.navigate('PreviousRepairs');
+                  this.props.navigation.navigate('SearchView');
                 }}>
-                Welcome
+                Search for a Company to handle your issue
               </Text>
             </View>
           </ScrollView>

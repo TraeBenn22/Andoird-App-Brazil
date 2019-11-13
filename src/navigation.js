@@ -7,6 +7,8 @@ import HomeView from './views/homePage/home';
 import StartView from './views/login/start';
 import SideBar from './views/sideBar/SideBar.component';
 import ProfileView from './views/profile/profile';
+import SearchView from './views/search/search';
+import ResultsView from './views/search/search-results';
 const AppNavigator = createDrawerNavigator(
   {
     SignInView: {screen: SignInView},
@@ -14,6 +16,8 @@ const AppNavigator = createDrawerNavigator(
     StartView: {screen: StartView},
     HomeView: {screen: HomeView},
     ProfileView: {screen: ProfileView},
+    SearchView: {screen: SearchView},
+    ResultsView: {screen: ResultsView},
   },
   {
     initialRouteName: 'StartView',

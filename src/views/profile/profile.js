@@ -1,13 +1,11 @@
 import React from 'react';
 import {
-  View,
   Text,
   Header,
   Footer,
   Content,
   Container,
   Button,
-  Icon,
   Left,
   Right,
   Form,
@@ -16,9 +14,7 @@ import {
   Label,
 } from 'native-base';
 import {StyleSheet} from 'react-native';
-import firebase from '../../FB/firebase';
 import styleTemplate from '../templates/styleTemplate';
-let userId = firebase.auth().currentUser.uid;
 
 export default class Profile extends React.Component {
   constructor(props) {
@@ -68,17 +64,17 @@ export default class Profile extends React.Component {
               <Input />
             </Item>
             <Button
+              backgroundColor=
+                  "gray"
               title="SaveInformation"
               onPress={() => navigate('HomeView')}>
-              <Text>Save Your Changes</Text>
+              <Text>Save Your Changes?</Text>
             </Button>
           </Form>
           <Footer>
-              <Button
-                  title="BackToHome"
-                  onPress={() => navigate('HomeView')}>
-                  <Text>Back to Home Page</Text>
-              </Button>
+            <Button title="BackToHome" onPress={() => navigate('HomeView')}>
+              <Text>Back to Home Page</Text>
+            </Button>
           </Footer>
         </Content>
       </Container>
@@ -93,7 +89,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-    var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-    // ...
-});
+// return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+//     var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+//     // ...
+// });
