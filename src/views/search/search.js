@@ -16,8 +16,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 'HVAC',
-      location: 'brasilia',
+      selected: 'null',
+      location: 'null',
     };
   }
   onValueChange(value: string) {

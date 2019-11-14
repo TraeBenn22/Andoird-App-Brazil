@@ -4,7 +4,6 @@ import {createDrawerNavigator} from 'react-navigation-drawer';
 import SignInView from './views/login/Signin';
 import SignUpView from './views/login/Signup';
 import HomeView from './views/homePage/home';
-import StartView from './views/login/start';
 import SideBar from './views/sideBar/SideBar.component';
 import ProfileView from './views/profile/profile';
 import SearchView from './views/search/search';
@@ -13,14 +12,13 @@ const AppNavigator = createDrawerNavigator(
   {
     SignInView: {screen: SignInView},
     SignUpView: {screen: SignUpView},
-    StartView: {screen: StartView},
     HomeView: {screen: HomeView},
     ProfileView: {screen: ProfileView},
     SearchView: {screen: SearchView},
     ResultsView: {screen: ResultsView},
   },
   {
-    initialRouteName: 'StartView',
+    initialRouteName: 'HomeView',
     drawerWidth: 300,
     contentOptions: {},
     contentComponent: props => <SideBar {...props} />,
