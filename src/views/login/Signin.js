@@ -9,6 +9,8 @@ export default class SignInView extends React.Component {
     this.state = {
       username: '',
       password: '',
+      loading: null,
+      authenticated: false,
     };
   }
   handleOnLoginPress = () => {
@@ -17,6 +19,11 @@ export default class SignInView extends React.Component {
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         firebase.auth().onAuthStateChanged(user => {
+          if (user) {
+            this.setState({loading: false, authenticated: true});
+          } else {
+            this.setState({loading: false, authenticated: false});
+          }
           this.props.navigation.navigate('HomeView');
         });
       })
@@ -43,6 +50,12 @@ export default class SignInView extends React.Component {
   };
 
   render() {
+    if (this.state.loading) {
+      return null;
+    }
+    if (this.state.authenticated) {
+      this.props.navigation.navigate('HomeView');
+    }
     return (
       <View style={{paddingTop: 50, alignItems: 'center'}}>
         <Text>Log In</Text>
