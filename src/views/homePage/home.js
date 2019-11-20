@@ -64,16 +64,22 @@ export default class HomePage extends React.Component {
           </Right>
         </Header>
         <Content>
+          <View>
+            <Text>
+              Hm, looks like you haven't finished your profile information just
+              yet. No worries, if you want to search by City simply press the button!
+            </Text>
+          </View>
           <ScrollView>
-            <Text>My 'repairs'</Text>
             <View style={{margin: 10}}>
-              <Text
+              <Button
+                title="Search"
                 style={styles.setBorder}
                 onPress={() => {
                   this.props.navigation.navigate('SearchView');
                 }}>
-                Search for a Company to handle your issue
-              </Text>
+                <Text>Search for a Company to handle your issue</Text>
+              </Button>
             </View>
           </ScrollView>
         </Content>

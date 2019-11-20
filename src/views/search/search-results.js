@@ -7,7 +7,6 @@ import {
   ScrollView,
   Button,
 } from 'react-native';
-import app from './search';
 
 export default class Search extends React.Component {
   constructor(props) {

@@ -91,8 +91,7 @@ export default class SignInView extends React.Component {
     }
     return (
       <Container style={styles.container}>
-          <Header style={styles.Header}><Text>fdsafasd</Text></Header>
-        <Text>Welcome to "App Name"</Text>
+        <Text>Welcome to Home Repair!</Text>
         <View style={{paddingTop: 50, alignItems: 'center'}}>
           <Text>Log In</Text>
           <TextInput
