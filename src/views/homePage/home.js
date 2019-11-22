@@ -66,8 +66,9 @@ export default class HomePage extends React.Component {
         <Content>
           <View>
             <Text>
-              Hm, looks like you haven't finished your profile information just
-              yet. No worries, if you want to search by City simply press the button!
+              Hm, looks like you haven't finished your profile just
+              yet. No worries, if you want to search by City, simply press the
+              button below!
             </Text>
           </View>
           <ScrollView>

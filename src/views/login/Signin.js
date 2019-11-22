@@ -1,39 +1,50 @@
 import React from 'react';
-import {View, Text, TextInput, Button, Alert, StyleSheet} from 'react-native';
+import {View, StyleSheet, Alert} from 'react-native';
 import {StackActions, NavigationActions} from 'react-navigation';
 import firebase from '../../FB/firebase';
 import {
-  Header,
-  Footer,
-  Content,
+  Button,
+  Input,
   Container,
-  Icon,
-  Left,
-  Right,
+  Item,
+  Text,
 } from 'native-base';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    margin: 10,
-    backgroundColor: '#D8D8D8',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#25383C',
   },
+    seperator: {
+      marginTop: 35,
+        color: 'gray',
+    },
   button1: {
-    marginTop: 20,
+      color: '#25383C',
+    marginTop: 75,
   },
   button2: {
-    marginTop: 0,
+      color: '#25383C',
+    marginTop: 50,
   },
-    Header: {
-      marginTop: 50,
-    },
+  Header: {
+    marginTop: 30,
+      color: 'white',
+      fontSize: 18,
+      textAlign: 'center',
+  },
   TextStyle: {
     textAlign: 'center',
     fontSize: 14,
-    textDecorationLine: 'underline',
+    color: 'white',
   },
+    loginStyles: {
+      color: 'white',
+    },
+    ForgotPasswordStyle: {
+      marginRight: 300,
+        fontSize: 12,
+        color: 'orange',
+    },
 });
 
 export default class SignInView extends React.Component {
@@ -60,12 +71,8 @@ export default class SignInView extends React.Component {
           this.props.navigation.navigate('HomeView');
         });
       })
-      .catch(function(error) {
-        console.error(error);
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        console.log(errorCode);
-        console.log(errorMessage);
+      .catch(error => {
+        Alert.alert(error.message);
       });
   };
 
@@ -91,54 +98,54 @@ export default class SignInView extends React.Component {
     }
     return (
       <Container style={styles.container}>
-        <Text>Welcome to Home Repair!</Text>
+          <Text style={styles.Header}>Member Sign in</Text>
         <View style={{paddingTop: 50, alignItems: 'center'}}>
-          <Text>Log In</Text>
-          <TextInput
-              style={styles.TextStyle}
-            value={this.state.email}
-            onChangeText={text => {
-              this.setState({email: text});
-            }}
-            placeholder="Please input your Email"
-              underlineColorAndroid="black"
-            keyboardType="email-address" // recognizes if email is not properly formatted
-            autoCapitalize="none" // will capitalize every first letter if not turned off
-            autoCorrect={false}
-          />
+          <Item fixedLabel>
+            <Input
+              placeholder="Email@example.com"
+              placeholderTextColor= 'white'
+              value={this.state.email}
+              onChangeText={text => {
+                this.setState({email: text});
+              }}
+              keyboardType="email-address" // recognizes if email is not properly formatted
+              autoCapitalize="none" // will capitalize every first letter if not turned off
+              autoCorrect={false}
+            />
+          </Item>
 
-          <Text>Password</Text>
+          <Item fixedLabel>
+            <Input
+              style={styles.loginStyles}
+              placeholder="Password"
+              placeholderTextColor= 'white'
+              value={this.state.password}
+              onChangeText={text => {
+                this.setState({password: text});
+              }}
+              secureTextEntry // creates fuzz or stars to obscure pass entry
+              autoCapitalize="none"
+              autoCorrect={false}
+            />
+          </Item>
+            <Text style={styles.ForgotPasswordStyle} onPress={this.handleOnForgotPasswordPress}> Forgot Password?</Text>
+          <Button
+              style={styles.button1}
+              dark
+            title="Login"
+            onPress={this.handleOnLoginPress}>
+            <Text style={styles.TextStyle}>                                 Signin                                     </Text>
+          </Button>
+            <Text style={styles.seperator}>-----------------------------------OR----------------------------------</Text>
 
-          <TextInput
-            value={this.state.password}
-            onChangeText={text => {
-              this.setState({password: text});
-            }}
-            placeholder="Please input your Password"
-            underlineColorAndroid="black"
-            secureTextEntry // creates fuzz or stars to obscure pass entry
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
-            <Button
-                title="Log In"
-                onPress={this.handleOnLoginPress}>
-                <Text>Log In</Text>
+
+            <Button style={styles.button2}
+                    dark
+              title="Create An Account"
+              onPress={this.handleOnCreateAccountPress}>
+              <Text style={styles.TextStyle}>                    Create An Account                       </Text>
             </Button>
-
-          <Button
-            title="Create An Account"
-            onPress={this.handleOnCreateAccountPress}>
-            <Text>Create An Account</Text>
-          </Button>
-
-          <Button
-            title="Forgot Password?"
-            onPress={this.handleOnForgotPasswordPress}>
-            <Text>Forgot Password?</Text>
-          </Button>
         </View>
-        <Footer />
       </Container>
     );
   }
