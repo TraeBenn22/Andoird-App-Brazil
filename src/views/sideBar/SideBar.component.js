@@ -10,6 +10,14 @@ import {
   Left,
   Right,
 } from 'native-base';
+import {StyleSheet} from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#25383C',
+    color: 'white',
+  },
+});
 
 const routeData = [
   {
@@ -42,7 +50,7 @@ class SideBar extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container style={styles.container}>
         <Content>
           <Right>
             <Icon
@@ -64,7 +72,7 @@ class SideBar extends React.Component {
                     name={data.icon}
                     style={{color: '#777', fontSize: 26, width: 30}}
                   />
-                  <Text style={{color: 'black'}}>{data.name}</Text>
+                  <Text style={{color: 'white'}}>{data.name}</Text>
                 </Left>
               </ListItem>
             )}

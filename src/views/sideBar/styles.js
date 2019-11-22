@@ -1,10 +1,11 @@
-import { StyleSheet, Dimensions } from 'react-native';
-
+import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-    alignLeft: {
-        flex: 3,
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-    },
-})
+  alignLeft: {
+    color: 'white',
+    backgroundColor: '#25383C',
+    flex: 3,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+  },
+});
