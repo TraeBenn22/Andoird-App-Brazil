@@ -10,17 +10,23 @@ import {
   Icon,
   Left,
   Right,
+  Body,
 } from 'native-base';
 import styleTemplate from '../templates/styleTemplate';
 import {ScrollView, StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
+  header: {
+    backgroundColor: '#25383C',
+    color: 'white',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#25383C',
   },
-  red: {
-    color: 'red',
+  background: {
+    backgroundColor: 'whitesmoke',
   },
   setFontSize: {
     fontSize: 20,
@@ -29,14 +35,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   setBorder: {
-    width: 390,
-    height: 55,
-    borderWidth: 3,
-    borderColor: '#045FB4',
+    backgroundColor: '#25383C',
     fontSize: 15,
     fontWeight: 'bold',
-    justifyContent: 'center',
-    alignItems: 'center',
+  },
+  TextStyle: {
+    textAlign: 'center',
+    fontSize: 14,
+    color: 'white',
+  },
+  BodyText: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: '#25383C',
+  },
+  BodyText2: {
+    textAlign: 'center',
+    textDecorationLine: 'underline',
+    fontSize: 18,
+    color: '#25383C',
+  },
+  BodyText3: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: '#25383C',
   },
 });
 
@@ -50,25 +72,28 @@ export default class HomePage extends React.Component {
   }
   render() {
     return (
-      <Container style={styles.red}>
-        <Header style={styleTemplate.header}>
+      <Container>
+        <Header style={styles.header}>
           <Left>
             <Button
+              title="drawer"
               transparent
               onPress={() => this.props.navigation.openDrawer()}>
               <Icon style={styleTemplate.menu} name="menu" />
             </Button>
           </Left>
-          <Right>
-            <Text>Home Repair</Text>
-          </Right>
+          <Body>
+            <Text style={styles.TextStyle}>Home Repair</Text>
+          </Body>
         </Header>
-        <Content>
+        <Content style={styles.background}>
           <View>
-            <Text>
-              Hm, looks like you haven't finished your profile just
-              yet. No worries, if you want to search by City, simply press the
-              button below!
+            <Text style={styles.BodyText}>
+              Hm, looks like you haven't finished your profile just yet.
+            </Text>
+            <Text style={styles.BodyText2}>Fill out Profile?</Text>
+            <Text style={styles.BodyText3}>
+              If you would rather just search by city, use the button below!
             </Text>
           </View>
           <ScrollView>
