@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   },
     loginStyles: {
       color: 'white',
+      alignItems: 'center',
     },
     ForgotPasswordStyle: {
       marginRight: 300,
@@ -58,24 +59,27 @@ export default class SignInView extends React.Component {
     };
   }
   handleOnLoginPress = () => {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then(() => {
-        firebase.auth().onAuthStateChanged(user => {
-          if (user) {
-            this.setState({loading: false, authenticated: true});
-          } else {
-            this.setState({loading: false, authenticated: false});
-          }
-          this.props.navigation.navigate('HomeView');
-        });
-      })
-      .catch(error => {
-        Alert.alert(error.message);
-      });
-  };
-
+    if (this.state.email === undefined) {
+      Alert.alert('Please enter a proper email address');
+    } else {
+      firebase
+          .auth()
+          .signInWithEmailAndPassword(this.state.email, this.state.password)
+          .then(() => {
+            firebase.auth().onAuthStateChanged(user => {
+              if (user) {
+                this.setState({loading: false, authenticated: true});
+              } else {
+                this.setState({loading: false, authenticated: false});
+              }
+              this.props.navigation.navigate('HomeView');
+            });
+          })
+          .catch(error => {
+            Alert.alert(error.message);
+          });
+    }
+    };
   handleOnCreateAccountPress = () => {
     this.props.navigation.navigate('SignUpView');
   };
@@ -134,7 +138,7 @@ export default class SignInView extends React.Component {
               dark
             title="Login"
             onPress={this.handleOnLoginPress}>
-            <Text style={styles.TextStyle}>                                 Signin                                     </Text>
+            <Text style={styles.TextStyle}>                                 Sign In                                     </Text>
           </Button>
             <Text style={styles.seperator}>-----------------------------------OR----------------------------------</Text>
 

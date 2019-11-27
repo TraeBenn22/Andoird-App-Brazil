@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class SearchFunc extends React.Component {
+export default class SearchFunc extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -114,7 +114,3 @@ class SearchFunc extends React.Component {
   }
 }
 
-let term = this.state.selected;
-let location = this.state.location;
-
-export default {term, location};
