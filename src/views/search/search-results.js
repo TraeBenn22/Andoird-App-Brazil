@@ -7,7 +7,6 @@ import {
   ScrollView,
   Button,
 } from 'react-native';
-import {searchTerm, searchLocation} from './search';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -21,8 +20,6 @@ export default class Search extends React.Component {
   }
 
   componentDidMount(): void {
-    // this.setState({term: 'HVAC'});
-    console.log(searchTerm);
     let url = `https://api.yelp.com/v3/businesses/search?term=${this.state.term}&location=${this.state.location}`;
     let bearer =
       'Bearer ' +
