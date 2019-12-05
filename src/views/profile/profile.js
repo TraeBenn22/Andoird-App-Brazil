@@ -11,15 +11,16 @@ import {
   Form,
   Item,
   Input,
+  Toast,
   Label,
 } from 'native-base';
 import {StyleSheet} from 'react-native';
-import styleTemplate from '../templates/styleTemplate';
 
 export default class Profile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showToast: false,
       name: '',
       email: '',
       street: '',
@@ -33,12 +34,12 @@ export default class Profile extends React.Component {
     const {navigate} = this.props.navigation;
     return (
       <Container>
-        <Header>
+        <Header style={styles.header}>
           <Left>
-            <Text>Welcome to your profile</Text>
+            <Text style={styles.TextStyle}>Welcome to your profile</Text>
           </Left>
           <Right>
-            <Text>Editing Profile for $</Text>
+            <Text style={styles.TextStyle}>Editing Profile for Guest</Text>
           </Right>
         </Header>
         <Content>
@@ -63,16 +64,27 @@ export default class Profile extends React.Component {
               <Label>Zip Code</Label>
               <Input />
             </Item>
-            <Button
-              backgroundColor=
-                  "gray"
-              title="SaveInformation"
-              onPress={() => navigate('HomeView')}>
-              <Text>Save Your Changes?</Text>
-            </Button>
           </Form>
+
           <Footer>
-            <Button title="BackToHome" onPress={() => navigate('HomeView')}>
+            <Button
+              styler={styles.setBorder}
+              title={'saving'}
+              success
+              onPress={() =>
+                Toast.show({
+                  text: 'Profile Updated!',
+                  buttonText: 'Okay',
+                  type: 'success',
+                })
+              }>
+              <Text>Save Changes</Text>
+            </Button>
+
+            <Button
+              style={styles.setBorder}
+              title="BackToHome"
+              onPress={() => navigate('HomeView')}>
               <Text>Back to Home Page</Text>
             </Button>
           </Footer>
@@ -82,11 +94,50 @@ export default class Profile extends React.Component {
   }
 }
 const styles = StyleSheet.create({
+  header: {
+    backgroundColor: '#25383C',
+    color: 'white',
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#25383C',
+  },
+  background: {
+    backgroundColor: 'whitesmoke',
+  },
+  setFontSize: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  setBorder: {
+    backgroundColor: '#25383C',
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  TextStyle: {
+    textAlign: 'center',
+    fontSize: 14,
+    color: 'white',
+  },
+  BodyText: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: '#25383C',
+  },
+  BodyText2: {
+    textAlign: 'center',
+    textDecorationLine: 'underline',
+    fontSize: 18,
+    color: '#25383C',
+  },
+  BodyText3: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: '#25383C',
   },
 });
 // return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
