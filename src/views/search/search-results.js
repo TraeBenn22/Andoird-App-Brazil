@@ -7,6 +7,7 @@ import {
   ScrollView,
   Button,
 } from 'react-native';
+import {infoArray} from './search';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -14,8 +15,8 @@ export default class Search extends React.Component {
     this.state = {
       isLoading: true,
       dataSource: null,
-      term: 'Plumbing',
-      location: 'Salvador',
+      term: infoArray[0],
+      location: infoArray[1],
     };
   }
 
@@ -34,7 +35,6 @@ export default class Search extends React.Component {
       .then(response => response.text())
       .then(resData => {
         const val = JSON.parse(resData);
-        // alert(JSON.parse(resData));
         this.setState({
           isLoading: false,
           dataSource: val.businesses,
@@ -57,8 +57,10 @@ export default class Search extends React.Component {
         <View>
 
           <ScrollView>
+            {console.log(infoArray)}
             {this.state.dataSource.map((item, index) => (
               <View key={item.id} style={styles.item}>
+
                 <Text style={styles.text}>Business Name: {'\n'} {item.name}</Text>
                 <Text style={styles.text}>Address: {item.location.display_address}</Text>
                 <Text style={styles.text}>Rating: {item.rating}</Text>
