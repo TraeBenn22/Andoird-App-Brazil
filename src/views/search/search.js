@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
   Text,
   Header,
@@ -61,25 +61,33 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class SearchFunc extends React.Component {
+export let infoArray = [];
+
+export default class SearchFunc extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selected: 'null',
       location: 'null',
     };
+    this.selection = '';
   }
-  onValueChange(value: string) {
+  onValueChange(value) {
     this.setState({
       selected: value,
     });
   }
-
+  getSearchResults() {
+    infoArray.push(this.state.selected, this.state.location);
+    this.props.navigation.navigate('ResultsView');
+  }
   render() {
     return (
       <Container>
         <Header style={styles.header}>
-          <Text style={styles.TextStyle}>Find a Company that can handle your request!</Text>
+          <Text style={styles.TextStyle}>
+            Find a Company that can handle your request!
+          </Text>
         </Header>
         <Content>
           <Form>
@@ -96,15 +104,17 @@ export default class SearchFunc extends React.Component {
               <Picker.Item label="Carpentry" value="Carpentry" />
             </Picker>
             <Item floatingLabel>
-              <Label required="true" selectedValue={this.state.location}>
-                Enter your City
-              </Label>
-              <Input />
+              <Label>Enter City</Label>
+              <Input
+                getRef={input => {
+                  this.state.location = input;
+                }}
+              />
             </Item>
             <Button
               style={styles.setBorder}
               title="SaveInformation"
-              onPress={() => this.props.navigation.navigate('ResultsView')}>
+              onPress={() => this.getSearchResults()}>
               <Text>Find a Company!</Text>
             </Button>
           </Form>
@@ -113,4 +123,3 @@ export default class SearchFunc extends React.Component {
     );
   }
 }
-
