@@ -18,7 +18,7 @@ const AppNavigator = createDrawerNavigator(
     ResultsView: {screen: ResultsView},
   },
   {
-    initialRouteName: 'HomeView',
+    initialRouteName: 'SignInView',
     drawerWidth: 300,
     contentOptions: {},
     contentComponent: props => <SideBar {...props} />,

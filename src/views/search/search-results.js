@@ -1,11 +1,12 @@
 import React from 'react';
+import call from 'react-native-phone-call';
 import {
   StyleSheet,
   Text,
   View,
   ActivityIndicator,
   ScrollView,
-  Button,
+    Button,
 } from 'react-native';
 import {infoArray} from './search';
 
@@ -55,17 +56,19 @@ export default class Search extends React.Component {
     } else {
       return (
         <View>
-
           <ScrollView>
-            {console.log(infoArray)}
             {this.state.dataSource.map((item, index) => (
               <View key={item.id} style={styles.item}>
-
                 <Text style={styles.text}>Business Name: {'\n'} {item.name}</Text>
                 <Text style={styles.text}>Address: {item.location.display_address}</Text>
                 <Text style={styles.text}>Rating: {item.rating}</Text>
                 <Text style={styles.text}>Contact Number: {item.phone}</Text>
-                <Button title="Contact" style={styles.Button}>f</Button>
+                <Button
+                  color={'orange'}
+                  title={'Contact'}
+                  onPress={() =>
+                    call({number: item.phone}).catch(console.error)}>
+              </Button>
               </View>
             ))}
           </ScrollView>
@@ -93,13 +96,17 @@ const styles = StyleSheet.create({
     margin: 2,
     borderColor: '#2a4944',
     borderWidth: 1,
-    backgroundColor: '#d2f7f1',
+    backgroundColor: '#25383C',
   },
   text: {
     flex: 1,
     textAlign: 'center',
+    color: 'white',
   },
   Button: {
+    backgroundColor: '#25383C',
+    fontSize: 15,
+    fontWeight: 'bold',
     alignContent: 'center',
   },
 });
