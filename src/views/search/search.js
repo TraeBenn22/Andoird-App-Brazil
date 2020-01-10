@@ -109,7 +109,8 @@ export default class SearchFunc extends Component {
               <Picker.Item label="Painting" value="Painting" />
               <Picker.Item label="Carpentry" value="Carpentry" />
             </Picker>
-            <Item fixedLabel>
+
+            <Item floatingLabel>
               <Label>Enter City</Label>
               <Input onChangeText={event => (this.state.location = event)} />
             </Item>
