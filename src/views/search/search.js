@@ -67,20 +67,26 @@ export default class SearchFunc extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: 'null',
-      location: 'null',
+      selected: 'Car Repair',
+      location: 'Seattle',
     };
-    this.selection = '';
   }
   onValueChange(value) {
+    console.log(this.state.selected, this.state.location);
     this.setState({
       selected: value,
+    });
+  }
+  onLocationChange(event) {
+    this.setState({
+      location: event,
     });
   }
   getSearchResults() {
     infoArray.push(this.state.selected, this.state.location);
     this.props.navigation.navigate('ResultsView');
   }
+
   render() {
     return (
       <Container>
@@ -103,13 +109,9 @@ export default class SearchFunc extends Component {
               <Picker.Item label="Painting" value="Painting" />
               <Picker.Item label="Carpentry" value="Carpentry" />
             </Picker>
-            <Item floatingLabel>
+            <Item fixedLabel>
               <Label>Enter City</Label>
-              <Input
-                getRef={input => {
-                  this.state.location = input;
-                }}
-              />
+              <Input onChangeText={event => (this.state.location = event)} />
             </Item>
             <Button
               style={styles.setBorder}
